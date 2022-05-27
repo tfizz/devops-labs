@@ -1,0 +1,13 @@
+---
+dependencies:
+  debian:
+    - ca-certificates
+    - curl
+    - gnupg
+    - lsb-release
+
+packages:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+  - docker-compose-plugin

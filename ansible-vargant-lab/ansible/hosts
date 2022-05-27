@@ -1,0 +1,7 @@
+[nodes]
+testserver1
+testserver2
+
+[nodes:vars]
+ansible_user=vagrant
+ansible_ssh_user=vagrant

@@ -1,0 +1,6 @@
+---
+- name: "Install and configure docker and docker-compose"
+  hosts: "{{hosts}}"
+  become: yes
+  roles:
+    - docker

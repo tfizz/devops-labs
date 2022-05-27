@@ -1,0 +1,52 @@
+Vagrant.configure("2") do |config|
+
+  # List properties of servers to provision
+  servers = [
+    {
+      :hostname => "ansible",
+      :base => "hashicorp/bionic64",
+      :vm_name => "ansible-server"
+    },
+    {
+      :hostname => "testserver1",
+      :base => "hashicorp/bionic64",
+      :vm_name => "test-server1"
+    },
+    {
+      :hostname => "testserver2",
+      :base => "hashicorp/bionic64",
+      :vm_name => "test-server2"
+    }
+  ]
+
+  # Provision each server
+  servers.each do |machine|
+    config.vm.define machine[:hostname] do |server|
+      # Define server config
+      server.vm.hostname = machine[:hostname]
+      server.vm.box = machine[:base]
+
+      # setup networking
+      server.vm.network "public_network", bridge: "BRIDGE"
+
+      # Virtualbox configuration
+      server.vm.provider "virtualbox" do |vb|
+        vb.name = machine[:vm_name]
+        vb.memory = "1024"
+        vb.cpus = "1"
+      end
+      
+      # write ip of each machine to file
+      server.vm.provision "shell" do |shell|
+        shell.path = "scripts/hostfile.sh"
+        shell.args = [machine[:hostname]]
+      end
+    end
+  end
+
+  # provision only on ansible server
+  config.vm.define "ansible" do |server|
+    # install ansible
+    server.vm.provision "shell", path: "scripts/ansible-install.sh"
+  end
+end

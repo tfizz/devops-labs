@@ -1,0 +1,3 @@
+---
+- name: add vagrant to docker group
+  shell: "usermod -aG docker vagrant"
