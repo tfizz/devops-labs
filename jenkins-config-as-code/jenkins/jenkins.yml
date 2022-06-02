@@ -1,0 +1,35 @@
+jenkins:
+  systemMessage: "Jenkins configured automatically by Jenkins Configuration as Code plugin\n\n"
+  scmCheckoutRetryCount: 3
+  labelString: "master"
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: ${JENKINS_ADMIN_ID}
+          password: ${JENKINS_ADMIN_PASSWORD}
+  authorizationStrategy:
+    globalMatrix:
+      permissions:  
+        - "GROUP:Credentials/Update:authenticated"
+        - "GROUP:View/Delete:authenticated"
+        - "GROUP:View/Read:authenticated"
+        - "GROUP:View/Configure:authenticated"
+        - "GROUP:View/Create:authenticated"
+        - "GROUP:Job/Read:authenticated"
+        - "GROUP:Job/Build:authenticated"
+        - "GROUP:Job/Configure:authenticated"
+        - "GROUP:Job/Create:authenticated"
+        - "GROUP:Job/Delete:authenticated"
+        - "GROUP:Job/Workspace:authenticated"
+        - "GROUP:Job/Cancel:authenticated"
+        - "GROUP:Run/Delete:authenticated"
+        - "GROUP:Run/Replay:authenticated"
+        - "GROUP:Run/Update:authenticated"
+        - "GROUP:SCM/Tag:authenticated"
+        - "GROUP:Overall/Read:authenticated"
+        - "USER:Overall/Administer:${JENKINS_ADMIN_ID}"
+
+unclassified:
+  location:
+    url: ${JENKINS_URL}
