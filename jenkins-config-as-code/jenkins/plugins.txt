@@ -12,3 +12,4 @@ docker-plugin:latest
 greenballs:latest
 blueocean:latest
 pipeline-stage-view:latest
+docker-workflow:latest
