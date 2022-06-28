@@ -1,0 +1,15 @@
+build-timeout:latest
+cloudbees-folder:latest
+configuration-as-code:latest
+credentials-binding:latest
+git:latest
+github-branch-source:latest
+matrix-auth:latest
+timestamper:latest
+workflow-aggregator:latest
+ws-cleanup:latest
+docker-plugin:latest
+greenballs:latest
+blueocean:latest
+pipeline-stage-view:latest
+docker-workflow:latest
