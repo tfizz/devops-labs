@@ -1,0 +1,2 @@
+FROM haproxy:alpine3.16
+COPY ./certs/mysite.pem /etc/ssl/certs/mysite.pem
